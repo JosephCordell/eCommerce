@@ -7,10 +7,12 @@ router.get('/', (req, res) => {
   // find all tags
 
   Tag.findAll({
-    include: [{        
-      model: Product,
-      through: ProductTag,
-    }],
+    include: [
+      {
+        model: Product,
+        through: ProductTag,
+      },
+    ],
   })
     .then((results) => res.json(results))
     .catch((err) => res.status(500).json(err));
@@ -22,20 +24,22 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-    include: [{        
-      model: Product,
-      through: ProductTag,
-    }],
+    include: [
+      {
+        model: Product,
+        through: ProductTag,
+      },
+    ],
   })
-  .then((results) => res.json(results))
-  .catch((err) => res.status(500).json(err));
+    .then((results) => res.json(results))
+    .catch((err) => res.status(500).json(err));
 });
 
 router.post('/', (req, res) => {
   // create a new tag
   Tag.create(req.body)
-  .then((results) => res.status(200).json(results))
-  .catch((err) => res.status(400).json(err));
+    .then((results) => res.status(200).json(results))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.put('/:id', (req, res) => {
@@ -45,8 +49,8 @@ router.put('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-  .then((results) => res.status(200).json(results))
-  .catch((err) => res.status(400).json(err));
+    .then((results) => res.status(200).json(results))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.delete('/:id', (req, res) => {
@@ -56,8 +60,8 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-  .then((results) => res.status(200).json(results))
-  .catch((err) => res.status(400).json(err));
+    .then((results) => res.status(200).json(results))
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;
